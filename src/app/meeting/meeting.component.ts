@@ -1,5 +1,6 @@
 
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-meeting',
   templateUrl: './meeting.component.html',
@@ -15,7 +16,7 @@ export class MeetingComponent implements OnInit {
   @Input() IsFree:string;
   @Input() Grad:string;
   rnum : string;
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     let len = this.Room.length;
@@ -32,4 +33,8 @@ export class MeetingComponent implements OnInit {
       return v;
      }
    }
+   onReserve(){
+     alert("reserve?");
+    this.router.navigate(['reserve']);
+  }
 }

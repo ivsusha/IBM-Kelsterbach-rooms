@@ -12,7 +12,7 @@ export class RoomComponent implements OnInit {
   @Input() mySearch: string ;
   @Output() onRoomChanged = new EventEmitter<string>();
   mySearch1= undefined; 
-  roomArray: {geb: string, descr: string}[]=[];
+  roomArray: {geb: string,descr: string}[]=[]; 
   meetArray: {geb: string, xleft: string,yleft: string,xtop: string, ytop: string, com: string, isFree: string, grad: string}[] = [];
   constructor(private rooms: RoomsService ) {
 

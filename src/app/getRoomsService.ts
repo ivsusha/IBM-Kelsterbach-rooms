@@ -12,9 +12,16 @@ export class RoomsService {
    constructor(private http: Http) {}
    // tslint:disable-next-line:one-line
    getRooms() {
-    const headers = new Headers([{'Content-Type': 'application/json'}, {'Access-Control-Allow-Origin': '*'},
-    {'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS'},
-  {'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'}]);
+    const headers = new Headers({
+    'Content-Type': 'application/json;charset=utf-8'
+ });
+//headers.append("Access-Control-Allow-Origin", "*");
+//headers.append("Access-C"Aontrol-Allow-Credentials", "true");
+//headers.append("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+//headers.append("Access-Control-Allow-Headers", " Authorization,Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+  
+
+  //  let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
   //  const header = new Headers({'Content-Type': 'application/json'});
    // return (this.http.get('assets/rooms.json', { headers: headers }));
    return (this.http.get('rooms.xsp?view=all', { headers: headers }));
@@ -24,7 +31,7 @@ export class RoomsService {
      const body = JSON.stringify(roomArray);
  //    const body = "{geb:" + "'"+roomArray.geb + "'"+ ', descr:' + "'"+roomArray.descr + "'"+
  //    ", x:" + "'"+roomArray.x + "%'" +", y:" + "'"+roomArray.y + "%'}"
-     let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
+     let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' }); 
     return (this.http.post('rooms.xsp?view=save', body, { headers: headers }));
    }
    setCoord(roomArray:{geb: string, position: string, x: string, y: string,descr: string,grad: string }){
@@ -41,10 +48,14 @@ export class RoomsService {
     let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
        return(this.http.get('rooms.xsp?view=isadmin', { headers: headers }));
      }
-     getFreeMeetingRooums(body){
+     getFreeMeetingRooums(body,dbpath){
       const possibleEvent = JSON.stringify(body);
-      let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
-      return (this.http.post('https://dimztest02.mainz.de.ibm.com/web/quietRoom.nsf/xsp/quietRoomGetByParam', possibleEvent, { headers: headers }));
+      let headers = new Headers([{ 'Content-Type': 'application/json;charset=utf-8' }]);
+      
+        
+      
+   //   let headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
+      return (this.http.post(dbpath+'/xsp/quietRoomGetByParam', possibleEvent, { headers: headers }));
      }
    
 }

@@ -14,6 +14,15 @@ import { MeetingComponent } from './meeting/meeting.component';
 import { DateTimePickerModule } from 'ng-pick-datetime';
 import { SelectMeetingComponent } from './modalfilter';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ReserveComponent } from './reserve/reserve.component';
+import {Routes, RouterModule} from '@angular/router';
+import { BuildingComponent } from './building/building.component';
+export const appRoutes: Routes =[
+  { path: '', component: BuildingComponent, pathMatch: 'full'},
+  {path: 'rooms', component: BuildingComponent},   
+  { path: 'reserve', component:ReserveComponent},   
+  { path: '**', redirectTo: '/'}
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,10 +32,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     ConfirmComponent,
     AddRoomCoord,
     SelectMeetingComponent,
-    MeetingComponent
+    MeetingComponent,
+    ReserveComponent,
+    BuildingComponent
   ],
   imports: [
     BrowserModule,
+    RouterModule.forRoot(appRoutes,{useHash:true}),
     DateTimePickerModule,
     FormsModule,
     HttpModule,
