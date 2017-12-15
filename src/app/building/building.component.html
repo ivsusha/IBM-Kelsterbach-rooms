@@ -1,106 +1,109 @@
-<div class = "container-fluid" style="text-align:center">
+<div class="container-fluid" style="text-align:center">
   <div class="row">
-    <div class = "col-xs-12">       
-<h3>
-   {{title}}
-</h3>
-</div></div>
-<div class="row"> 
-    <div class="col-xs-12 col-sm-8 col-md-6">             
-       
-      
-      <div *ngIf="isAdmin">
-       
-       
-      <label class="switch">
-        <input type="checkbox" (click) = "onAllRooms()"  [(ngModel)]="modeAll">
-        <span class="slider round"><label>All rooms</label></span>         
-      </label>      
+    <div class="col-xs-12">
+      <h3>
+        {{title}} 
+        <span><select [(ngModel)]="selfloor" class="form-control1" id="sel1" style="width:45px;" (ngModelChange)="onChange($event)">
+            <option>3</option>
+            <option>2</option>
+            <option>1</option>
+            <option>0</option>
+            <option>-1</option>
+            <option>-2</option>
+          </select> </span>
+      </h3>
      
-      <label class="switch">
-        <input type="checkbox"(click) = "onMRooms()"  [(ngModel)]="modeMeeting">
-        <span class="slider round"><label>Meeting</label></span>
-      </label></div>
     </div>
-    <div class="col-md-2 col-xs-5" >
-        <div> <button type="button" class="btn btn-info" (click) = "onFreeRooms()">Free quiet rooms</button></div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-6">
+
+
+      <div *ngIf="isAdmin">
+
+
+        <label class="switch">
+          <input type="checkbox" (click)="onAllRooms()" [(ngModel)]="modeAll">
+          <span class="slider round">
+            <label>All rooms</label>
+          </span>
+        </label>
+
+        <label class="switch">
+          <input type="checkbox" (click)="onMRooms()" [(ngModel)]="modeMeeting">
+          <span class="slider round">
+            <label>Meeting</label>
+          </span>
+        </label>
       </div>
-     
-    
-    
-     <div class="col-xs-7 col-md-4">
-  <app-room [mySearch] = "search" (onRoomChanged)= "onRoomChanged($event)"></app-room >
-</div>
-
-</div>
+    </div>
+    <div class="col-md-2 col-xs-5">
+      <div>
+        <button type="button" class="btn btn-info" (click)="onFreeRooms()">Free quiet rooms</button>
+      </div>
+    </div>
 
 
-<div class="row">        
-  <div class="col-xs-10 col-md-9" style="position:relative;">       
+
+    <div class="col-xs-7 col-md-4">
+      <app-room [mySearch]="search" (onRoomChanged)="onRoomChanged($event)"></app-room>
+    </div>
+
+  </div>
+
+
+  <div class="row">
+    <div class="col-xs-10 col-md-9" style="position:relative;">
 
       <div style="position:relative;">
-          <div  id = "cursor" style="position:absolute; left:0px; top:0px;width:2%;height:2%; visibility: hidden;" > 
-              <img src ="assets/cursor1.jpg"class="img-responsive">
-               
-               <span id = "span" class="badge">Badge</span>
-               
-          </div> 
-          
-          <app-meeting *ngFor = "let m of meetArray "  
-         [Xleft]=m.xleft [Yleft]=m.ytop [Width]=getWidth(m) 
-         [Height]=getHeight(m) [Visible]=isMVisible(m.geb) [Room]=m.geb [IsFree] = m.isFree [Grad] =m.grad
-          ></app-meeting>
-              
-<div *ngIf="gebE3">  
-  
-<img src='images/Geb_51_E3_4k.jpg' class="img-responsive" alt="Building IBM"
- id ="building3"  (click)="showConfirm($event)"
-  style="opacity: 1.0;"  >      
-</div>
+        <div id="cursor" style="position:absolute; left:0px; top:0px;width:2%;height:2%; visibility: hidden;">
+          <img src="assets/cursor1.jpg" class="img-responsive">
+
+          <span id="span" class="badge">Badge</span>
+
+        </div>
+
+        <app-meeting *ngFor="let m of meetinRoomsArray " [Xleft]=m.xleft [Yleft]=m.ytop [Width]=getWidth(m) [Height]=getHeight(m)
+          [Visible]=isMVisible(m.geb) [Room]=m.geb [IsFree]=m.isFree [Grad]=m.grad [StartAt]=m.start [EndAt]=m.end [Descr]=m.description
+          [RoomId]=m.roomId></app-meeting>
+
+        <div *ngIf="gebE3">
+
+          <img src='images/Geb_51_E3_4k.jpg' class="img-responsive" alt="Building IBM" id="building3" (click)="showConfirm($event)"
+            style="opacity: 1.0;">
+        </div>
 
 
 
 
-  <div *ngIf="gebE2">
-  <img src='images/Geb_51_E2_4k.jpg'
-  class="img-responsive" alt="Building IBM"
- id ="building2"  (click)="showConfirm($event)"
-  style="opacity: 1.0;"></div>
-  <div *ngIf="gebE1">
-    <img src='images/Geb_51_E1_4k.jpg'
-    class="img-responsive" alt="Building IBM"
-   id ="building1"  (click)="showConfirm($event)"
-    style="opacity: 1.0;"></div>
-  <div *ngIf="gebE0">
- <img src='images/Geb_51_E0_4k.jpg'
-  class="img-responsive" alt="Building IBM"
- id ="building0"  (click)="showConfirm($event)"
-  style="opacity: 1.0;" ></div>
-  <div *ngIf="gebU1">
-    <img src='images/Geb_51_U1_4k.jpg'
-     class="img-responsive" alt="Building IBM"
-    id ="buildingU1"  (click)="showConfirm($event)"
-     style="opacity: 1.0;" ></div>
-     <div *ngIf="gebU2">
-      <img src='images/Geb_51_U2_4k.jpg'
-       class="img-responsive" alt="Building IBM"
-      id ="buildingU2"  (click)="showConfirm($event)"
-       style="opacity: 1.0;" ></div>
+        <div *ngIf="gebE2">
+          <img src='images/Geb_51_E2_4k.jpg' class="img-responsive" alt="Building IBM" id="building2" (click)="showConfirm($event)"
+            style="opacity: 1.0;">
+        </div>
+        <div *ngIf="gebE1">
+          <img src='images/Geb_51_E1_4k.jpg' class="img-responsive" alt="Building IBM" id="building1" (click)="showConfirm($event)"
+            style="opacity: 1.0;">
+        </div>
+        <div *ngIf="gebE0">
+          <img src='images/Geb_51_E0_4k.jpg' class="img-responsive" alt="Building IBM" id="building0" (click)="showConfirm($event)"
+            style="opacity: 1.0;">
+        </div>
+        <div *ngIf="gebU1">
+          <img src='images/Geb_51_U1_4k.jpg' class="img-responsive" alt="Building IBM" id="buildingU1" (click)="showConfirm($event)"
+            style="opacity: 1.0;">
+        </div>
+        <div *ngIf="gebU2">
+          <img src='images/Geb_51_U2_4k.jpg' class="img-responsive" alt="Building IBM" id="buildingU2" (click)="showConfirm($event)"
+            style="opacity: 1.0;">
+        </div>
       </div>
-</div>
+    </div>
+
+  </div>
+
+  <hr>
+  <footer id="footer">
+    <p style='color:gray'>&copy; IBM Domino Development Center Rhein-Main 2017</p>
+  </footer>
 
 </div>
-
-<hr>
-<footer id="footer">
-  <p style='color:gray'>&copy; IBM Domino Development Center Rhein-Main 2017</p>
-</footer>
-
-</div>
-
-
-
-
-
-
-

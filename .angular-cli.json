@@ -24,7 +24,9 @@
         "../node_modules/ng-pick-datetime/assets/style/picker.min.css",
         "styles.css"
       ],
-      "scripts": [ ],
+      "scripts": [ "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js"],
+
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

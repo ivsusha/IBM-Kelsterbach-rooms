@@ -17,67 +17,67 @@ export interface MeetingModel {
     styles: ['owl-datetime{height:2.5em;}'],
     template:
     `<div class="modal-dialog">
-            <div class="modal-content">
-               <div class="modal-header">
-                 <button type="button" class="close" (click)="close()" >&times;</button>
-                 <h4 class="modal-title">Enter values</h4>
-               </div>
-               <div class="modal-body">
-                 <div class="container-fluid">
-                 <div class="row">
-                   <div class="col-xs-12 col-md-4">
-                   <div class="form-group">
-                   <label for="build">Gebäude </label>
-                     <input type="text" name="build" id="build" class="form-control" value="51"
-                     [(ngModel)] = geb required
-                     pattern="" title="">
-                   </div>
-                   <div class="form-group">
-                   <label for="etage">Etage </label>
-                     <input type="text" name="etage" id="etage" class="form-control" value=""
-                     [(ngModel)] = etage 
-                      pattern="" title="" placeholder="0,1,2...U1,U2">
-                   </div>
+    <div class="modal-content">
+       <div class="modal-header">
+         <button type="button" class="close" (click)="close()" >&times;</button>
+         <h4 class="modal-title">Enter values</h4>
+       </div>
+       <div class="modal-body">
+         <div class="container-fluid">
+            <form class="form-horizontal">
+         <div class="row">
+            <div class="form-group">
+                <label for="geb" class="col-xs-2">Block </label>
+                <div class="col-xs-10 col-sm-9">
+                  <input type="text" name="build" id="build" class="form-control" value="51" [(ngModel)]=geb>
+                </div>
+              </div>
 
+           <div class="form-group">
+                <label for="etage" class="col-xs-2">Floor </label>
+                <div class="col-xs-10 col-sm-9">
+                  <input type="text" name="etage" id="etage" class="form-control" value="" [(ngModel)]=etage  placeholder="0,1,2..U1,U2">
+                </div>
+            </div>
+
+          
+            <div class="form-group">
+                <label for="fl" class="col-xs-2">Corridor </label>
+                <div class="col-xs-10 col-sm-9">
+                  <input type="text" name="fl" id="fl" class="form-control" value="" [(ngModel)]=fl  placeholder="1,2,3...">
+                </div>
+              </div>
+           
+              <div class="form-group">
                   
-                   <div class="form-group">
-                   <label for="fl">Flügel </label>
-                     <input type="text" name="fl" id="fl" class="form-control" value=""
-                     [(ngModel)] = fl 
-                      pattern="" title="" placeholder="1,2...">
-                   </div>
-                   
-                   <div class="form-group">
-                   <div class="input-control">
-                   <label for="input1">Von </label>
-                   
-                   <owl-date-time [(ngModel)]="input1Moment" name = "mom1" [dateFormat]="'DD.MM.YYYY HH:mm'" 
-                   [placeHolder]="'DD.MM.YYYY hh:mm'" [min]="min" [max]="max" [inputId]="'input1'" ></owl-date-time >
-                   </div>
-                   </div>
+                                <div class="input-control">
+                                  <label for="input1" class="col-xs-2">From </label>
+                                  <div class="col-xs-10 col-sm-9">
+                                    <owl-date-time [(ngModel)]=input1Moment name="mom1" [dateFormat]="'DD.MM.YYYY HH:mm'" [placeHolder]="'DD.MM.YYYY hh:mm'" [min]="min"
+                                      [max]="max" [inputId]="'input1'"></owl-date-time>
+                                  </div>
+                                </div>
+                              </div>
 
-                   <div class="form-group">
-                   <div class="input-control">
-                   <label for="input2">Bis </label>
-                   
-                   <owl-date-time [(ngModel)]="input2Moment" name = "mom2" [dateFormat]="'DD.MM.YYYY HH:mm'" 
-                   [placeHolder]="'DD.MM.YYYY hh:mm'" [min]="min" [max]="max" [inputId]="'input2'"></owl-date-time >
-                   </div>
-                   </div>
-
-
-                 </div>
-               </div>
-
-
-
-               </div>
-               <div class="modal-footer">
-                 <button type="button"[disabled]="!isValid()" class="btn btn-primary" (click)="confirm()">OK</button>
-                 <button type="button" class="btn btn-default" (click)="close()" >Cancel</button>
-               </div>
-             </div>
-          </div>`
+                              <div class="form-group">
+                                  <div class="input-control">
+                                    <label for="input2" class="col-xs-2">To </label>
+                                    <div class="col-xs-10 col-sm-9">
+                                      <owl-date-time [(ngModel)]=input2Moment name="mom2" [dateFormat]="'DD.MM.YYYY HH:mm'" [placeHolder]="'DD.MM.YYYY hh:mm'" [min]="min"
+                                        [max]="max" [inputId]="'input2'"></owl-date-time>
+                                    </div>
+                                  </div>
+                                </div>
+         </div>
+        </form>
+       </div>
+       </div>
+       <div class="modal-footer">
+         <button type="button"[disabled]="!isValid()" class="btn btn-primary" (click)="confirm()">OK</button>
+         <button type="button" class="btn btn-default" (click)="close()" >Cancel</button>
+       </div>
+     </div>
+  </div>`
 })
 export class SelectMeetingComponent extends DialogComponent<MeetingModel, {startsAt:string,endsAt:string,block:string,floor:string,corridor:string}> implements MeetingModel {
   public min = new Date();
@@ -96,7 +96,7 @@ export class SelectMeetingComponent extends DialogComponent<MeetingModel, {start
   input1Moment  = new Date();
   input2Moment = new Date();
   mEvent : {startsAt:string,endsAt:string,block:string,floor:string,corridor:string}=
-  {startsAt:"",endsAt:"",block:"",floor:"",corridor:""};
+  {startsAt:"",endsAt:"",block:"",floor:undefined,corridor:undefined};
   constructor(dialogService: DialogService) {
     super(dialogService);
     this.max.setDate(this.max.getDate()+1);

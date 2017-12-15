@@ -1,39 +1,62 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+       <div class="modal-header">
+         <button type="button" class="close" (click)="close()" >&times;</button>
+         <h4 class="modal-title">Enter values</h4>
+       </div>
+       <div class="modal-body">
+         <div class="container-fluid">
+            <form class="form-horizontal">
+         <div class="row">
+            <div class="form-group">
+                <label for="build" class="col-sm-2">Block </label>
+                <div class="col-xs-12 col-sm-9">
+                  <input type="text" name="build" id="build" class="form-control" value="51" [(ngModel)]=geb>
+                </div>
+              </div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12">
-      
-      <span class="label">Gebäude</span>
-      
-      <div class="form-group">
-        
-        <input type="text" name="" id="geb" class="form-control" value=""
-         required="required" pattern="" title="">
-        
-      </div>
-      <span class="Pos X">Pos X</span>
-      
-      <div class="form-group">
-        
-        <input type="text" name="x" id="x" class="form-control" value=""
-         required="required" pattern="" title="">
-        
-      </div>
-      <span class="Pos X">Pos Y</span>
-      <div class="form-group">
+           <div class="form-group">
+                <label for="etage" class="col-sm-2">Floor </label>
+                <div class="col-sm-9">
+                  <input type="text" name="etage" id="etage" class="form-control" value="" [(ngModel)]=etage>
+                </div>
+            </div>
+
           
-          <input type="text" name="y" id="y" class="form-control" value=""
-           required="required" pattern="" title="">
-          
-        </div>
-        <span class="Pos X">Beschreibung</span>
-        <div class="form-group">
-            
-            <input type="text" name="desacr" id="descr" class="form-control" value=""
-             required="required" pattern="" title="">
-            
-          </div>
-      
-    </div>
+            <div class="form-group">
+                <label for="fl" class="col-sm-2">Corridor </label>
+                <div class="col-sm-9">
+                  <input type="text" name="fl" id="fl" class="form-control" value="" [(ngModel)]=fl>
+                </div>
+              </div>
+           
+              <div class="form-group">
+                  
+                                <div class="input-control">
+                                  <label for="input1" class="col-xs-2">From </label>
+                                  <div class="col-xs-10 col-sm-9">
+                                    <owl-date-time [(ngModel)]=input1Moment name="mom1" [dateFormat]="'DD.MM.YYYY HH:mm'" [placeHolder]="'DD.MM.YYYY hh:mm'" [min]="min"
+                                      [max]="max" [inputId]="'input1'"></owl-date-time>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="form-group">
+                                  <div class="input-control">
+                                    <label for="input2" class="col-xs-2">To </label>
+                                    <div class="col-xs-10 col-sm-9">
+                                      <owl-date-time [(ngModel)]=input2Moment name="mom2" [dateFormat]="'DD.MM.YYYY HH:mm'" [placeHolder]="'DD.MM.YYYY hh:mm'" [min]="min"
+                                        [max]="max" [inputId]="'input2'"></owl-date-time>
+                                    </div>
+                                  </div>
+                                </div>
+         </div>
+        </form>
+       </div>
+       </div>
+       <div class="modal-footer">
+         <button type="button"[disabled]="!isValid()" class="btn btn-primary" (click)="confirm()">OK</button>
+         <button type="button" class="btn btn-default" (click)="close()" >Cancel</button>
+       </div>
+     </div>
   </div>
-</div>

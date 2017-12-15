@@ -13,6 +13,7 @@ import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { MeetingComponent } from './meeting/meeting.component';
 import { DateTimePickerModule } from 'ng-pick-datetime';
 import { SelectMeetingComponent } from './modalfilter';
+import {RoomDetailsComponent} from './roomdialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ReserveComponent } from './reserve/reserve.component';
 import {Routes, RouterModule} from '@angular/router';
@@ -33,6 +34,7 @@ export const appRoutes: Routes =[
     AddRoomCoord,
     SelectMeetingComponent,
     MeetingComponent,
+    RoomDetailsComponent,
     ReserveComponent,
     BuildingComponent
   ],
@@ -51,7 +53,8 @@ export const appRoutes: Routes =[
   entryComponents: [
     ConfirmComponent,
     AddRoomCoord,
-    SelectMeetingComponent
+    SelectMeetingComponent,
+    RoomDetailsComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -2,6 +2,7 @@ import { Response } from '@angular/http';
 import { RoomsService } from './../getRoomsService';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { MeetingObj } from '../meetingobject';
 
 @Component({
   selector: 'app-room',
@@ -13,7 +14,9 @@ export class RoomComponent implements OnInit {
   @Output() onRoomChanged = new EventEmitter<string>();
   mySearch1= undefined; 
   roomArray: {geb: string,descr: string}[]=[]; 
-  meetArray: {geb: string, xleft: string,yleft: string,xtop: string, ytop: string, com: string, isFree: string, grad: string}[] = [];
+ // meetArray: {geb: string, xleft: string,yleft: string,xtop: string, ytop: string, com: string, isFree: string, grad: string,
+ //   roomId: string, description: string, capacity: string, start:string, end: string}[] = [];
+    meetingObjArray: MeetingObj[] =[];
   constructor(private rooms: RoomsService ) {
 
    }
@@ -35,13 +38,21 @@ export class RoomComponent implements OnInit {
      for(var v in rooms){
    //    (rooms[v]) =>this.meetArray.push(v);
      
-       const newLocal: { geb: string, xleft: string,yleft: string,xtop: string, ytop: string, com: string, isFree: string, grad: string; } = rooms[v];
-
-      if(newLocal.xleft!= undefined && newLocal.xleft!= "") this.meetArray.push(newLocal);
+       const newLocal: { geb: string, xleft: string,yleft: string,xtop: string, ytop: string, com: string,
+         isFree: string, grad: string, roomId: string, description: string, capacity: string,start: string, end:string} = rooms[v];
+       
+         
+      if(newLocal.xleft!= undefined && newLocal.xleft!= "") {
+        let meeting = new MeetingObj();
+        this.meetingObjArray.push(meeting.SetValues=(rooms[v]));
+    //    this.meetArray.push(newLocal);
+      
+      }
      }
   }
   getMeetingRooms() {
-    return this.meetArray;
+  //  return this.meetArray;
+  return this.meetingObjArray;
   }
  onClick(entry) {
    this.mySearch1 = entry.geb;  
@@ -56,7 +67,7 @@ export class RoomComponent implements OnInit {
   item.setAttribute("name",entry.geb);
   badge[0].innerHTML = entry.descr;
 //  console.log('top:'+rect.top, 'right:'+rect.right, 'bottom:'+ rect.bottom, 'left:'+ rect.left);
- // this.mySearch1 = undefined;  
+  this.mySearch1 = undefined;  
   var pos = item.getBoundingClientRect();
   if(pos.top>window.innerHeight)  window.scrollTo(pos.left, pos.top);
  
