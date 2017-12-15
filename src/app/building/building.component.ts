@@ -10,7 +10,7 @@ import { MeetingObj } from '../meetingobject';
 
 
 @Component({
-    selector: 'app-building',
+    selector: 'app-building', 
     templateUrl: './building.component.html',
     styleUrls: ['./building.component.css']
 })
