@@ -3,6 +3,7 @@ import { RoomsService } from './../getRoomsService';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { MeetingObj } from '../meetingobject';
+import { NgModel } from '@angular/forms/src/directives/ng_model';
 
 @Component({
   selector: 'app-room',
@@ -54,11 +55,13 @@ export class RoomComponent implements OnInit {
   //  return this.meetArray;
   return this.meetingObjArray;
   }
- onClick(entry) {
+  
+ onClick(entry) {   
    this.mySearch1 = entry.geb;  
    this.onRoomChanged.emit(entry.geb);
   const item = document.getElementById('cursor');
   const badge = item.getElementsByClassName('badge'); 
+  
  // const build = document.getElementById('building');
   item.style.visibility = 'visible';
   item.style.zIndex = "100";

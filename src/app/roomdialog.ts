@@ -39,7 +39,9 @@ export interface RoomModel {
       </div>
       <div class="modal-body">    
         <div class="container-fluid">
+        
           <form class="form-horizontal">
+
             <div class="row hidden-xs  hidden-sm hidden-md hidden-lg">
               <div class=" col-xs-12 hidden-xs">
                 <img src="images/DSC04337.JPG" class="img-responsive" alt="meeting room" style="width:20%;height:20%;"><br>
@@ -87,7 +89,7 @@ export interface RoomModel {
                 <div class="input-control">
                   <label for="input1" class="col-xs-2">From </label>
                   <div class="col-xs-10 col-sm-9">
-                    <owl-date-time [(ngModel)]=startAt name="startAt" [dateFormat]="'DD.MM.YYYY HH:mm'" [placeHolder]="'DD.MM.YYYY hh:mm'" [min]="min"
+                    <owl-date-time [showButtons]="true" [(ngModel)]=startAt name="startAt" [dateFormat]="'DD.MM.YYYY HH:mm'" [placeHolder]="'DD.MM.YYYY hh:mm'" [min]="min"
                       [max]="max" [inputId]="'input1'"></owl-date-time>
                   </div>
                 </div>
@@ -97,7 +99,7 @@ export interface RoomModel {
                 <div class="input-control">
                   <label for="input2" class="col-xs-2">To </label>
                   <div class="col-xs-10 col-sm-9">
-                    <owl-date-time [(ngModel)]=endAt name="mom2" [dateFormat]="'DD.MM.YYYY HH:mm'" [placeHolder]="'DD.MM.YYYY hh:mm'" [min]="min"
+                    <owl-date-time  [showButtons]="true" [(ngModel)]=endAt name="mom2" [dateFormat]="'DD.MM.YYYY HH:mm'" [placeHolder]="'DD.MM.YYYY hh:mm'" [min]="min"
                       [max]="max" [inputId]="'input2'"></owl-date-time>
                   </div>
                 </div>
@@ -218,7 +220,8 @@ export class RoomDetailsComponent extends DialogComponent<RoomModel, boolean> im
         if (response.text().indexOf("unavailable") >= 0) {
           alert("Sorry but this period is not available, try to choose another one")
         }
-        else { alert("The room " + this.number + " was reserved from " + this.mEvent.startsAt + " till " + this.mEvent.endsAt) };
+        else {        
+           alert("The room " + this.room_abbr.substring(10) + " was reserved from " + this.mEvent.startsAt.substring(0,17) + " till " + this.mEvent.endsAt.substring(0,17)) };
         this.result = true;
       },
       (error) => { alert("Wrong parameters"); this.result = false; }

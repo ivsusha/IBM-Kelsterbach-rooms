@@ -53,7 +53,7 @@ export interface MeetingModel {
                                 <div class="input-control">
                                   <label for="input1" class="col-xs-2">From </label>
                                   <div class="col-xs-10 col-sm-9">
-                                    <owl-date-time [(ngModel)]=input1Moment name="mom1" [dateFormat]="'DD.MM.YYYY HH:mm'" [placeHolder]="'DD.MM.YYYY hh:mm'" [min]="min"
+                                    <owl-date-time  [showButtons]="true" [(ngModel)]=input1Moment name="mom1" [dateFormat]="'DD.MM.YYYY HH:mm'" [placeHolder]="'DD.MM.YYYY hh:mm'" [min]="min"
                                       [max]="max" [inputId]="'input1'"></owl-date-time>
                                   </div>
                                 </div>
@@ -63,7 +63,7 @@ export interface MeetingModel {
                                   <div class="input-control">
                                     <label for="input2" class="col-xs-2">To </label>
                                     <div class="col-xs-10 col-sm-9">
-                                      <owl-date-time [(ngModel)]=input2Moment name="mom2" [dateFormat]="'DD.MM.YYYY HH:mm'" [placeHolder]="'DD.MM.YYYY hh:mm'" [min]="min"
+                                      <owl-date-time  [showButtons]="true" [(ngModel)]=input2Moment name="mom2" [dateFormat]="'DD.MM.YYYY HH:mm'" [placeHolder]="'DD.MM.YYYY hh:mm'" [min]="min"
                                         [max]="max" [inputId]="'input2'"></owl-date-time>
                                     </div>
                                   </div>

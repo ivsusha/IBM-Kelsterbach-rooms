@@ -39,7 +39,7 @@
     </div>
     <div class="col-md-2 col-xs-5">
       <div>
-        <button type="button" class="btn btn-info" (click)="onFreeRooms()">Free quiet rooms</button>
+        <button type="button" class="btn btn-info" (click)="onFreeRooms()">Free rooms</button>
       </div>
     </div>
 
@@ -50,8 +50,7 @@
     </div>
 
   </div>
-
-
+<br> 
   <div class="row">
     <div class="col-xs-10 col-md-9" style="position:relative;">
 
@@ -65,7 +64,7 @@
 
         <app-meeting *ngFor="let m of meetinRoomsArray " [Xleft]=m.xleft [Yleft]=m.ytop [Width]=getWidth(m) [Height]=getHeight(m)
           [Visible]=isMVisible(m.geb) [Room]=m.geb [IsM]=m.isM [IsFree]=m.isFree [Grad]=m.grad [StartAt]=m.start [EndAt]=m.end [Descr]=m.com
-          [RoomId]=m.roomId></app-meeting>
+          [RoomId]=m.roomId ></app-meeting>
 
         <div *ngIf="gebE3">
 
