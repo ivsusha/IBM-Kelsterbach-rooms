@@ -3,7 +3,7 @@
     <div class="col-xs-12">
       <h3>
         {{title}} 
-        <span><select [(ngModel)]="selfloor" class="form-control1" id="sel1" style="width:45px;" (ngModelChange)="onChange($event)">
+        <span><select [(ngModel)]="selfloor" class="form-control1" id="sel1" style="width:70px;" (ngModelChange)="onChange($event)">
             <option>3</option>
             <option>2</option>
             <option>1</option>
@@ -57,14 +57,14 @@
 
       <div style="position:relative;">
         <div id="cursor" style="position:absolute; left:0px; top:0px;width:2%;height:2%; visibility: hidden;">
-          <img src="assets/cursor1.jpg" class="img-responsive">
+          <img src="assets/cursor1.png" class="img-responsive">
 
           <span id="span" class="badge">Badge</span>
 
         </div>
 
         <app-meeting *ngFor="let m of meetinRoomsArray " [Xleft]=m.xleft [Yleft]=m.ytop [Width]=getWidth(m) [Height]=getHeight(m)
-          [Visible]=isMVisible(m.geb) [Room]=m.geb [IsFree]=m.isFree [Grad]=m.grad [StartAt]=m.start [EndAt]=m.end [Descr]=m.description
+          [Visible]=isMVisible(m.geb) [Room]=m.geb [IsM]=m.isM [IsFree]=m.isFree [Grad]=m.grad [StartAt]=m.start [EndAt]=m.end [Descr]=m.com
           [RoomId]=m.roomId></app-meeting>
 
         <div *ngIf="gebE3">

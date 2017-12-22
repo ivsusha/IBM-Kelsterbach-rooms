@@ -12,6 +12,7 @@ export interface RoomModel {
   room_abbr: string,
   number: string,
   block: string,
+  isM: string,
   descr: string,
   corridor: string, floor: string, roomId: string
   // roomArray:  {geb: string, descr: string, x: string, y: string} ;
@@ -73,10 +74,15 @@ export interface RoomModel {
                   <input type="text" name="number" id="number" class="form-control" value="" [(ngModel)]=number>
                 </div>
               </div>
-  
+              <div class="form-group" *ngIf="isNotMeeting()">
+              <label for="user" class="col-xs-2">User </label>
+              <div class="col-xs-10 col-sm-9">
+                <input type="text" name="user" id="user" class="form-control" value="" [(ngModel)]=username  placeholder="Enter your name">
+              </div>
+            </div>
               
   
-              <div class="form-group">
+              <div class="form-group" *ngIf="isNotMeeting()">
   
                 <div class="input-control">
                   <label for="input1" class="col-xs-2">From </label>
@@ -87,7 +93,7 @@ export interface RoomModel {
                 </div>
               </div>
   
-              <div class="form-group">
+              <div class="form-group" *ngIf="isNotMeeting()">
                 <div class="input-control">
                   <label for="input2" class="col-xs-2">To </label>
                   <div class="col-xs-10 col-sm-9">
@@ -100,7 +106,7 @@ export interface RoomModel {
               <div class="form-group">
                 <label for="descr" class="col-xs-2">Info </label>
                 <div class="col-xs-10 col-sm-9">
-                  <input type="text" name="descr" id="descr" class="form-control" value="" [(ngModel)]=descr pattern="" title="">
+                  <textarea name="descr" id="descr" class="form-control" value="" [(ngModel)]=descr rows="2"></textarea>
                 </div>
               </div>
   
@@ -114,7 +120,7 @@ export interface RoomModel {
       </div>
     </div>
     <div class="modal-footer">
-    <div class="btn-group">
+    <div class="btn-group" *ngIf="isNotMeeting()">
     <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" (click)="getReservedTime(toggle)">
     Occupied time <span class="caret" ></span></button>
     <ul class="dropdown-menu" role="menu" style="width:300px;">
@@ -123,7 +129,7 @@ export interface RoomModel {
     </ul>
   </div>    
   
-      <button type="button" [disabled]="!isValid()" class="btn btn-primary" (click)="confirm()">Reserve</button>
+      <button type="button" [disabled]="!isValid()" class="btn btn-primary" (click)="confirm()" *ngIf="isNotMeeting()">Reserve</button>
       <button type="button" class="btn btn-default" (click)="close()">Cancel</button>
     </div>
   </div>
@@ -133,6 +139,7 @@ export class RoomDetailsComponent extends DialogComponent<RoomModel, boolean> im
 
   roomReservedT: { time: string }[] = [];
   toggle:boolean = false;
+  username = this.roomService.GetCurrentUser();
   public min = new Date();
   public max = new Date();
   startAt: Date;
@@ -142,6 +149,7 @@ export class RoomDetailsComponent extends DialogComponent<RoomModel, boolean> im
   message: string;
   geb = "51";
   room_abbr: string;
+  isM: string;
   descr: string;
   build = "";
   number: string;
@@ -152,9 +160,10 @@ export class RoomDetailsComponent extends DialogComponent<RoomModel, boolean> im
   raum = "";
   input1Moment = new Date(this.startAt);
   input2Moment = new Date(this.endAt);
-  mEvent: { "resourceUniversalId": string, "startsAt": string, "endsAt": string, "comments": string } =
-    { "resourceUniversalId": "", "startsAt": "", "endsAt": "", "comments": "" };
+  mEvent: { "resourceUniversalId": string, "startsAt": string, "endsAt": string, "user": string } =
+    { "resourceUniversalId": "", "startsAt": "", "endsAt": "", "user": "" };
   roomEvent: { resourceUniversalId: string } = { resourceUniversalId: "" };
+
   constructor(dialogService: DialogService, private roomService: RoomsService) {
     super(dialogService);
     this.max.setDate(this.max.getDate() + 1);
@@ -165,8 +174,12 @@ export class RoomDetailsComponent extends DialogComponent<RoomModel, boolean> im
     if (this.startAt < this.endAt) return true;
     else return false;
   }
+  isNotMeeting(){ 
+    if(this.isM =="1") return false;
+    else return true;
+  }
+  
   getReservedTime(toggle) {
-
     this.toggle = !this.toggle;
    // if (this.toggle == false) return;
     let extdb = this.roomService.GetQuietRoomDbPath();
@@ -199,7 +212,7 @@ export class RoomDetailsComponent extends DialogComponent<RoomModel, boolean> im
     )
     this.mEvent.endsAt = d2;
     this.mEvent.resourceUniversalId = this.roomId;
-    this.mEvent.comments = this.descr;
+    this.mEvent.user = this.username;
     this.roomService.reserve(this.mEvent).subscribe(
       (response: Response) => {
         if (response.text().indexOf("unavailable") >= 0) {

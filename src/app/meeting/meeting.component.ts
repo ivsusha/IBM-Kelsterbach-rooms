@@ -22,6 +22,7 @@ export class MeetingComponent implements OnInit {
   @Input() EndAt:string;
   @Input() Descr:string;
   @Input() RoomId:string;
+  @Input() IsM:string;
   rnum : string;
   block:string;
   floor:string;
@@ -39,6 +40,7 @@ export class MeetingComponent implements OnInit {
   }
   setBackground(IsFree){
     if(IsFree == 'free') return 'green'
+    else if(this.IsM == "1")return 'rgb(23, 116, 193)'
     else return 'rgb(172, 208, 238)';
   }
    setDegree(Grad){
@@ -73,6 +75,7 @@ export class MeetingComponent implements OnInit {
       floor: this.floor,
       corridor: this.corridor ,
       descr:this.Descr,
+      isM: this.IsM,
       roomId: this.RoomId          
       }).subscribe((isConfirmed) => {
       // We get dialog result

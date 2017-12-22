@@ -10,7 +10,8 @@ import { MeetingObj } from './meetingobject';
  @Injectable()
 export class RoomsService {
    extdbPath: any;
-   extdbUrl: String;
+   extdbUrl: string;
+   user: string;
    constructor(private http: Http) {}  
    getRooms() {
     const headers = new Headers({
@@ -93,4 +94,8 @@ export class RoomsService {
     this.extdbPath = dbpath;
  }
  GetQuietRoomDbPath(){ return  this.extdbPath};
+
+ SetCurrentUser(user){ this.user = user}
+ GetCurrentUser(){ return this.user}
 }
+

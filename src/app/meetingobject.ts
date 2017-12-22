@@ -8,6 +8,7 @@ export class MeetingObj {
     xtop: string;
     ytop: string;
     com: string;
+    isM: string;
     isFree: string;
     roomId: string;
     description: string;
@@ -24,6 +25,7 @@ export class MeetingObj {
         xtop: string,
         ytop: string,
         com: string,
+        isM: string,
         isFree: string,
         roomId: string;
         description: string,
@@ -38,13 +40,14 @@ export class MeetingObj {
             this.yleft= data.yleft;
             this.xtop= data.xtop;
             this.ytop =data.ytop;
-            
+            this.isM = data.isM;
             this.isFree=data.isFree;
             this.roomId=data.roomId;
             this.description= data.description;
             this.capacity= data.capacity;
             this.start= data.start;
             this.end= data.end;
+            this.com = data.com;
     }
 
 }

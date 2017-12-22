@@ -27,18 +27,18 @@ export class RoomComponent implements OnInit {
         this.roomArray = response.json();
       //  this.roomArray: {geb: string, descr: string}[] = response.json();
        // this.viewEntryArray = this.getView(viewArray);
-      // this.setMeetingRooms(this.roomArray);
+       this.setMeetingRooms(this.roomArray);
 
    },
     (error) => console.log(error),
-    () => this.setMeetingRooms(this.roomArray)
+  //  () => this.setMeetingRooms(this.roomArray)
   );
   }
   setMeetingRooms(rooms){
      for(var v in rooms){
    //    (rooms[v]) =>this.meetArray.push(v);
      
-       const newLocal: { geb: string, xleft: string,yleft: string,xtop: string, ytop: string, com: string,
+       const newLocal: { geb: string, xleft: string,yleft: string,xtop: string, ytop: string, com: string,isM: string,
          isFree: string, grad: string, roomId: string, description: string, capacity: string,start: string, end:string} = rooms[v];
        
          

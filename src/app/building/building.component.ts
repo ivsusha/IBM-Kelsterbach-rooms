@@ -49,6 +49,7 @@ export class BuildingComponent implements OnInit, AfterViewChecked {
                 this.webpath = temp.webpath;
                 this.roomservice.SetQuietRoomUrl(this.webpath);
                 this.roomservice.SetQuietRoomDbPath(this.dbpath);
+                this.roomservice.SetCurrentUser(temp.user);
             },
             (error) => this.isAdmin = false
         )
