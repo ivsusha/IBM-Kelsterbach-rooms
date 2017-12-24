@@ -1,0 +1,58 @@
+<!-- 
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Gebäude</th> <th>Beschreibung</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let entry of roomArray | searchFilter: mySearch" >
+        <td><a (click) = "onClick(entry.x, entry.y, entry.descr)"> {{entry.geb}}</a></td> <td>{{entry.descr}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<select [(ngModel)]="mySearch1"class="user-preselect btn-add" style="width: 90%;height: 34px;">
+  <option *ngFor="let entry of roomArray | searchFilter: mySearch1"><span>
+      <a (click) = "onClick(entry.x, entry.y, entry.descr)">{{entry.geb}}</a></span>></option>
+  
+</select>
+-->
+
+
+
+
+
+<div class="input-group dropdown">
+  <div class="search" style="position:fixed;z-index:9;" id="search">
+    <div class="input-group" style="-moz-width:105%; width:100%;">
+      <input type="text" [(ngModel)]="mySearch1" class="form-control" placeholder="Type to start search">
+
+      <!--
+             <a href = "C:\windows\system32\osk.exe ">Keyboard</a>
+         <span class="input-group-btn">
+           
+            
+            <button class="btn btn-default" type="button"  >
+              <i class="glyphicon glyphicon-search"></i></button>
+          
+        </span>
+       -->
+    </div>
+
+
+    <div>
+      <ul class="list-group" role="menu">
+        <li *ngFor="let entry of roomArray | searchFilter: mySearch1"  class="list-group-item">
+          <span>
+            <a class="pointer" (click)="onClick(entry)">{{entry.geb}}</a>
+          </span>
+        </li>
+      </ul>
+    </div>
+
+
+  </div>
+</div>

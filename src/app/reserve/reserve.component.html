@@ -1,0 +1,61 @@
+<div class="container" >
+    <h2>Meeting room</h2>
+    <form class="form-horizontal">
+     
+    
+    <div class="form-group">
+        
+        <label class="control-label col-sm-2" for="build">Gebäude:</label>
+        <div class="col-sm-10">
+      <input type="text" name="build" id="build" class="form-control" value="51"
+      [(ngModel)] = geb required
+      pattern="" title="">
+    </div>
+    </div>
+    <div class="form-group">
+       
+        <label class="control-label col-sm-2 " for="build">Etage:</label>
+        <div class="col-sm-10">
+      <input type="text" name="etage" id="etage" class="form-control" value=""
+      [(ngModel)] = etage
+       pattern="" title="" placeholder="0,1,2...U1,U2">
+    </div>
+    </div>
+   
+    <div class="form-group">
+        
+        <label class="control-label col-sm-2" for="build">Flügel:</label>
+        <div class="col-sm-10">
+      <input type="text" name="fl" id="fl" class="form-control" value=""
+      [(ngModel)] = fl 
+       pattern="" title="" placeholder="1,2...">
+    </div>
+    </div>
+    <div class="form-group">  
+          
+          <label class="control-label col-sm-2" for="input1" col-sm-2>Von:</label>
+          <div class="col-sm-10">
+      <owl-date-time [(ngModel)]="input1Moment" name = "mom1" [dateFormat]="'DD.MM.YYYY HH:mm'" 
+      [placeHolder]="'DD.MM.YYYY hh:mm'" [min]="min" [max]="max" [inputId]="'input1'" ></owl-date-time >
+    </div>
+      </div>
+      
+
+      <div class="form-group">  
+          
+          <label class="control-label col-sm-2" for="input2" col-sm-2>Bis:</label>
+          <div class="col-sm-10">
+      <owl-date-time [(ngModel)]="input2Moment" name = "mom2" [dateFormat]="'DD.MM.YYYY HH:mm'" 
+      [placeHolder]="'DD.MM.YYYY hh:mm'" [min]="min" [max]="max" [inputId]="'input2'" ></owl-date-time >
+    </div>
+      </div>
+      
+      <div class="col-sm-10 col-sm-offset-2">
+          <button type="button" class="btn btn-info" (click) = "onReserve()">Reserve</button>
+           <button type="button" class="btn btn-info" (click) = "onBack() ">Back</button>
+        </div> 
+        
+    </form>
+  </div>
+
+

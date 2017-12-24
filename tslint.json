@@ -17,6 +17,7 @@
       true,
       "rxjs",
       "rxjs/Rx"
+      
     ],
     "import-spacing": true,
     "indent": [
@@ -127,8 +128,11 @@
       "app",
       "kebab-case"
     ],
+<<<<<<< HEAD
     "angular-whitespace": [true, "check-interpolation"],
     "no-output-on-prefix": true,
+=======
+>>>>>>> 13974a61bf6f16528d849166bca29e678f74ca98
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
@@ -137,6 +141,11 @@
     "use-life-cycle-interface": true,
     "use-pipe-transform-interface": true,
     "component-class-suffix": true,
+<<<<<<< HEAD
     "directive-class-suffix": true
+=======
+    "directive-class-suffix": true,
+    "invoke-injectable": true
+>>>>>>> 13974a61bf6f16528d849166bca29e678f74ca98
   }
 }
