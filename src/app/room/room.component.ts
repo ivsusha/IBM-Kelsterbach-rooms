@@ -64,7 +64,7 @@ export class RoomComponent implements OnInit {
   
  // const build = document.getElementById('building');
   item.style.visibility = 'visible';
-  item.style.zIndex = "100";
+  item.style.zIndex = "8";
   item.style.left = entry.x;
   item.style.top = entry.y;
   item.setAttribute("name",entry.geb);
