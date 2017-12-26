@@ -2,3 +2,7 @@
 .pointer {
     cursor: pointer;
 }
+ul{
+    max-height: 450px;
+    overflow-y: auto;
+}
