@@ -1,3 +1,4 @@
+<body data-spy="scroll" data-target="find" data-offset="50" style="position:relative">
 <div class="container-fluid" style="text-align:center">
   <div class="row">
     <div class="col-xs-12">
@@ -46,7 +47,7 @@
 
 
     <div class="col-xs-7 col-md-4">
-      <app-room [mySearch]="search" (onRoomChanged)="onRoomChanged($event)"></app-room>
+      <app-room [mySearch]="search" (onRoomChanged)="onRoomChanged($event)" id ="find"></app-room>
     </div>
 
   </div>
@@ -106,3 +107,4 @@
   </footer>
 
 </div>
+</body>
