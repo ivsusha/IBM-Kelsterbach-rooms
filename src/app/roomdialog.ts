@@ -162,8 +162,8 @@ export class RoomDetailsComponent extends DialogComponent<RoomModel, boolean> im
   raum = "";
   input1Moment = new Date(this.startAt);
   input2Moment = new Date(this.endAt);
-  mEvent: { "resourceUniversalId": string, "startsAt": string, "endsAt": string, "user": string } =
-    { "resourceUniversalId": "", "startsAt": "", "endsAt": "", "user": "" };
+  mEvent: { "resourceUniversalId": string, "startsAt": string, "endsAt": string, "IntAddr": string } =
+    { "resourceUniversalId": "", "startsAt": "", "endsAt": "", "IntAddr": "" };
   roomEvent: { resourceUniversalId: string } = { resourceUniversalId: "" };
 
   constructor(dialogService: DialogService, private roomService: RoomsService) {
@@ -214,7 +214,7 @@ export class RoomDetailsComponent extends DialogComponent<RoomModel, boolean> im
     )
     this.mEvent.endsAt = d2;
     this.mEvent.resourceUniversalId = this.roomId;
-    this.mEvent.user = this.username;
+    this.mEvent.IntAddr = this.username;
     this.roomService.reserve(this.mEvent).subscribe(
       (response: Response) => {
         if (response.text().indexOf("unavailable") >= 0) {
