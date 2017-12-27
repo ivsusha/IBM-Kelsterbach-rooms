@@ -93,15 +93,25 @@ export class SelectMeetingComponent extends DialogComponent<MeetingModel, {start
   etage= undefined;
   fl= undefined;
   raum=""; 
-  input1Moment  = new Date();
-  input2Moment = new Date();
+  input1Moment  =this.setDate15M( new Date());
+  input2Moment = new Date(this.input1Moment.getTime() + 30*60000);
   mEvent : {startsAt:string,endsAt:string,block:string,floor:string,corridor:string}=
   {startsAt:"",endsAt:"",block:"",floor:undefined,corridor:undefined};
   constructor(dialogService: DialogService) {
     super(dialogService);
     this.max.setDate(this.max.getDate()+1);
   }
-
+setDate15M(date:Date){
+  let min = date.getMinutes();
+  let h = date.getHours();
+  if(min <=15) min = 15;
+  else if(min <=30) min = 30;
+  else if(min <=45) min = 45;
+  else {min = 0; h += 1; if(h>24) h = 1;}
+  date.setMinutes(min);
+  date.setHours(h);
+  return date;
+}
 // tslint:disable-next-line:one-line
 isValid():boolean{
  if(this.input1Moment < this.input2Moment) return true;

@@ -27,7 +27,7 @@ export class MeetingComponent implements OnInit {
   block:string;
   floor:string;
   corridor:string;
-  
+  date:Date;
   constructor(private dialogService: DialogService) { }
 
   ngOnInit() {
@@ -50,11 +50,31 @@ export class MeetingComponent implements OnInit {
       return v;
      }
    }
- convertDate(dat:string):Date{
+ convertDate(dat:string,st_end:number):Date{
  // let d1 = format(dat,'DD.MM.YYYY HH:mm ZZ');
  //13.12.2017 15:00  new Date(year, month, day, hours, minutes, seconds, milliseconds)
  // let d1 = format(dat, 'DD.MM.YYYY HH:mm');
- if(dat=="" || dat== undefined) return new Date();
+ if(dat=="" || dat== undefined) {
+  if( st_end === 0){
+  this.date= new Date();
+   let min = this.date.getMinutes();
+   let h = this.date.getHours();
+   if(min <=15) min = 15;
+   else if(min <=30) min = 30;
+   else if(min <=45) min = 45;
+   else {min = 0; h += 1; if(h>24) h = 1;}
+   this.date.setMinutes(min);
+   this.date.setHours(h);
+   return this.date;
+  }
+  else{
+    let minutes = 30;
+    let date1= new Date(this.date);
+    return new Date(date1.getTime() + minutes*60000);
+   
+  }
+   
+ } 
   let year = parseInt(dat.substr(6,4));
   let month = parseInt(dat.substr(3,2))-1;
   let day = parseInt(dat.substr(0,2));
@@ -67,8 +87,8 @@ export class MeetingComponent implements OnInit {
     let disposable = this.dialogService.addDialog(RoomDetailsComponent, {     
       title: 'Enter values',
       message: "Room info",  
-      startAt:this.convertDate(this.StartAt),
-      endAt:this.convertDate(this.EndAt) ,
+      startAt:this.convertDate(this.StartAt,0),
+      endAt:this.convertDate(this.EndAt,1) ,
       room_abbr: this.Room,
       number: this.rnum ,     
       block: this.block,
