@@ -38,10 +38,11 @@ export class MeetingComponent implements OnInit {
     this.corridor= this.Room.substr(10,1);
     this.block= this.Room.substr(4,2);
   }
+ 
   setBackground(IsFree){
-    if(IsFree == 'free') return 'green'
-    else if(this.IsM == "1")return 'rgb(23, 116, 193)'
-    else return 'rgb(172, 208, 238)';
+   // if(IsFree == 'free') return 'green'
+  //  else if(this.IsM == "1")return 'rgb(23, 116, 193)'
+  //  else return 'rgb(172, 208, 238)';
   }
    setDegree(Grad){
      if(this.Grad=="" || this.Grad == undefined) return ""

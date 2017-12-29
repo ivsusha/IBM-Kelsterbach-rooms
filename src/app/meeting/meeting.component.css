@@ -1,4 +1,4 @@
-.meeting {
+.quiet {
     position:absolute;
     background-color: rgb(172, 208, 238);
     width: 0px;
@@ -6,3 +6,50 @@
     left:0%;
     top: 0%;    
 }
+a.quiet{
+    color: #fff; 
+    text-decoration: none; 
+    user-select: none; 
+      
+    outline: none; 
+  } 
+  a.quiet:hover, a.quiet:focus{ background-color: rgb(149, 201, 243); } 
+  a.quiet:active { background-color: rgb(75, 108, 216); } 
+
+  .free{
+    position:absolute;
+    background-color: rgb(69, 148, 58);
+    width: 0px;
+    height:0px;
+    left:0%;
+    top: 0%;    
+}
+a.free{
+    color: #fff; 
+    text-decoration: none; 
+    user-select: none; 
+      
+    outline: none; 
+  } 
+
+
+  a.free:hover, a.free:focus{ background-color: rgb(176, 248, 194); } 
+  a.free:active { background-color: rgb(176, 248, 194); } 
+
+  .meeting {
+    position:absolute;
+    background-color: rgb(16, 91, 153);
+    width: 0px;
+    height:0px;
+    left:0%;
+    top: 0%;    
+}
+a.meeting{
+    color: #fff; 
+    text-decoration: none; 
+    user-select: none; 
+      
+    outline: none; 
+  } 
+  a.meeting:hover, a.meeting:focus{ background-color: rgb(101, 134, 158); } 
+  a.meeting:active { background-color: rgb(101, 134, 158); } 
